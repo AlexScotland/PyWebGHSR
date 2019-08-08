@@ -1,2 +1,2 @@
-web-site/html/css/* linguist-vendored
-web-site/html/vendor/* linguist-vendored
+web-site/html/*.css linguist-vendored
+
