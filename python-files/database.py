@@ -1,10 +1,12 @@
 import psycopg2
+from helper import *
 class db:
     #class helper functions
     def __init__(self):
         self.dbname = "songdb"
-        self.user = "dbuser"
-        self.password="basedata"
+        self.credentials = getUserAndPass()
+        self.user =self.credentials[0]
+        self.password=self.credentials[1]
         self.host="localhost"
 
     def login(self):
