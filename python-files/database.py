@@ -4,8 +4,12 @@ class db:
     #class helper functions
     def __init__(self):
         self.dbname = "songdb"
-        self.user ='dbuser'
-        self.password='basedata'
+        with open('/usr/share/pyshared/song_request/python-files/login.dug','r') as creds:
+            lines = creds.readlines()
+            self.user =lines[0]
+            self.user=self.user.strip()
+            self.password=lines[1]
+            self.password=self.password.strip()
         self.host="localhost"
 
     def login(self):
