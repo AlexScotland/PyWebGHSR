@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.4
 import cgi, cgitb, psycopg2, time, sys
-sys.path.append("/usr/share/pyshared/song_request/")
+sys.path.append("/usr/share/pyshared/song_request/python-files/")
 from database import db
 
 def printJobHTML(db,song_id, username):

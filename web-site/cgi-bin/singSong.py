@@ -9,21 +9,21 @@ if __name__ == "__main__":
     form = cgi.FieldStorage()
     ff = False
     try:
-        song_ide=form["songId"].value
-    except Exception as msg:
+        name=form["username"].value
+        song_name=form["songId"].value
+    except:
         print("<h1>Invalid Submission</h1>")
         ff = True
     if not ff:
         try:
             formDB = db()
             formDB.login()
-            song_id = formDB.curr.execute("""DELETE FROM current WHERE uid = '"""+str(song_ide)+"""';""")
+            formDB.curr.execute("""INSERT INTO current (uid, requester) VALUES (%s, %s);""", (song_name, name))
         except Exception as msg:
+            print(msg)
             link='http://dugdev.tk/oopsie.html'
         else:
-            link='http://dugdev.tk/cgi-bin/hub.py'
+            link='http://dugdev.tk/submission_complete.html'
         finally:
             formDB.logout()
-    else:
-        link='http://dugdev.tk/oopsie.html'
     print("""<meta http-equiv="refresh" content="0; URL='"""+link+"""'" />""")
