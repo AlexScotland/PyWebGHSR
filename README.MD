@@ -5,6 +5,12 @@
 
 ## Project Info
 
+DEMO:
+http://dugdev.tk
+
+Demo Of Dashboard:
+http://dugdev.tk/cgi-bin/hub.py
+
 Python GHSR is an open-sourced web-based guitarhero song request.
 
 Using cgi and postgresql, it is simple to import your songs and have a fully functioning song request for what ever purpose you need :)
