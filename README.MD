@@ -36,7 +36,7 @@ run song_add.py to have the songs imported.
 
 ## Built With
 
-* Centos 7](https://www.centos.org/download/) - OS on the server
+* [Centos 7](https://www.centos.org/download/) - OS on the server
 * [Apache Httpd](https://httpd.apache.org/) - Webserver
 
 ## Head Programmers
