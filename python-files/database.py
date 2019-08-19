@@ -50,7 +50,7 @@ class db:
             return resultList
     def findSongName(self, song_name):
         try:
-            res=self.curr.execute("""SELECT uid FROM songs WHERE song_name = '"""+song_name+"""';""")
+            res=self.curr.execute("""SELECT uid FROM songs WHERE song_name = %s;""",(song_name,))
             resultList=self.curr.fetchmany(1)
         except Exception as msg:
             print(msg)

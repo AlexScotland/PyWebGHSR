@@ -27,6 +27,8 @@ if __name__ == "__main__":
                 formDB.curr.execute("""INSERT INTO current (uid, requester) VALUES (%s, %s);""", (songs_id, name))
             else:
                 song_name = song_name.lower()
+                song_name=song_name.replace("'","")
+                song_name=song_name.replace('"','')
                 song_id = formDB.curr.execute("""SELECT uid FROM songs WHERE song_name LIKE '%"""+song_name+"""%';""")
                 resList=formDB.curr.fetchall()
                 if len(resList)> 1:
