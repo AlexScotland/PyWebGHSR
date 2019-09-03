@@ -19,6 +19,14 @@ Using cgi and postgresql, it is simple to import your songs and have a fully fun
 
 * edit song_add.py to your song_list provided by CloneHero or GH3
 
+* Run Database functions:
+
+* CREATE DATABASE songs;
+
+* CREATE TABLE songs (uid SERIAL UNIQUE,song_name TEXT,artist TEXT);
+
+* CREATE TABLE current (uid TEXT, requester TEXT);
+
 * run song_add.py to have the songs imported.
 
 * Move respective folders to areas
