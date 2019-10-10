@@ -1,4 +1,5 @@
 import psycopg2
+from datetime import datetime
 from helper import *
 class db:
     #class helper functions
@@ -35,7 +36,7 @@ class db:
         try:
             res=self.curr.execute("""INSERT INTO songs (song_name, artist) VALUES (%s, %s);""",(song_name,artist,))
         except Exception as msg:
-            print('There was an error with song:  '+song_name)
+            print('There was an error with song:  '+str(msg))
         else:
             return True
 
@@ -48,6 +49,7 @@ class db:
             print('There was an error with song:  '+str(id))
         else:
             return resultList
+
     def findSongName(self, song_name):
         try:
             res=self.curr.execute("""SELECT uid FROM songs WHERE song_name = %s;""",(song_name,))
@@ -57,3 +59,35 @@ class db:
             print('There was an error with song:  '+str(song_name))
         else:
             return resultList
+
+    def insertRequest(self,song,artist,requester):
+        # basic check if the requester has requested
+        try:
+            is_in = False
+            is_check = self.curr.execute("""SELECT requested FROM requested_songs WHERE requested  = '{}';""".format(requester))
+            is_check_list = self.curr.fetchone()
+            if is_check_list is not None:
+                is_in = True
+            if not is_in:
+                res=self.curr.execute("""INSERT INTO requested_songs (req_date,song_name, song_artist, requested) VALUES (%s, %s, %s, %s);""",(datetime.today(),song,artist,requester,))
+                return True
+            else:
+                return False
+        except Exception as msg:
+            print(msg)
+            print('There was an error with song:  '+str(id))
+            return False
+
+    def getAllReqSongs(self):
+        res = self.curr.execute("""SELECT * FROM requested_songs;""")
+        resList = self.curr.fetchall()
+        return resList
+
+    def removeReqSongbyReq(self,requester):
+        try:
+            res = self.curr.execute("""DELETE FROM requested_songs WHERE requested = '{}';""".format(requester))
+        except Exception as msg:
+            print(msg)
+            return False
+        else:
+            return True
